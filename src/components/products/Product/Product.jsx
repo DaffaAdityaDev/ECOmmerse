@@ -6,20 +6,21 @@ import useStyles from './styles'
 
 const Product = ({ product }) => {
   const classes = useStyles();
+  
 
   return (
     <Card className={classes.root}>
-      <CardMedia className={classes.media} image={product.image} title={product.name} />
+      <CardMedia className={classes.media} image={product.image.url} title={product.name} />
       <CardContent>
         <div className={classes.cardContent}>
           <Typography varint="h5" gutterBottom>
             {product.name}
           </Typography>
           <Typography varint="h5">
-            {product.price}
+            {product.price.formatted}
           </Typography>
         </div>
-        <Typography varint="body2" color="textSecondary">{product.description}</Typography>
+        <Typography varint="body1" color="textSecondary" dangerousSetInnerHTML={ { __html: product.description } }/>
       </CardContent>
       <CardActions disableSpacing className={classes.cardActions}>
         <IconButton aria-label="add to cart">
