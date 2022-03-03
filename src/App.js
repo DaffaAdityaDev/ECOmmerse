@@ -10,39 +10,40 @@ const App = () => {
   const fetchProducts = async () => {
     const { data } = await commerce.products.list();
     setProducts(data)
-  }
+  };
 
   const fetchCart = async () => {
     setCart(await commerce.cart.retrieve())
-  }
+  };
 
-  const handleAddToCart = async (productid, quanitity) => {
-    const data = await commerce.cart.add(productid, quanitity)
-    setCart(data)
-  }
+  const handleAddToCart = async (productId, quantity) => {
+    const item = await commerce.cart.add(productId, quantity);
 
-  const handleUpdateCartQty = async (productid, quanitity) => {
-    const { cart } = await commerce.cart.update(productid, {quanitity})
+    setCart(item.cart);
+  };
 
-    setCart(cart)
-  }
+  const handleUpdateCartQty = async (lineItemId, quantity) => {
+    const response = await commerce.cart.update(lineItemId, { quantity });
 
-  const handeRemoveFromCart = async (productid) => {
-    const { cart } = await commerce.cart.remove(productid)
+    setCart(response.cart);
+  };
 
-    setCart(cart)
-  }
+  async function handeRemoveFromCart(productid) {
+    const { cart } = await commerce.cart.remove(productid);
+
+    setCart(cart);
+  };
 
   const handleEmptyCart = async () => {
     const { cart } = await commerce.cart.empty()
 
     setCart(cart)
-  }
+  };
 
   useEffect(() => {
     fetchProducts();
     fetchCart();
-  }, [])
+  }, []);
 
   return (
     <>
