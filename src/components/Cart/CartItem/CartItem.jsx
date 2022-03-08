@@ -5,7 +5,6 @@ import useStyles from './styles';
 
 const CartItem = ({ item, handleUpdateCartQty, handeRemoveFromCart }) => {
     const classes = useStyles();
-    console.log( item )
 
     return (
         <Card className="cart-item">
@@ -27,3 +26,4 @@ const CartItem = ({ item, handleUpdateCartQty, handeRemoveFromCart }) => {
 };
 
 export default CartItem;
+
